@@ -1,0 +1,20 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 27/11/2025 00:09:47
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      :DAO
+00000000                             3  * Written by :
+00000000                             4  * Date       :
+00000000                             5  * Description:programme principal
+00000000                             6  *-----------------------------------------------------------
+00000000                             7   
+Line 8 WARNING: END directive missing, starting address not set
+
+No errors detected
+1 warning generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
