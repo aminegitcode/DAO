@@ -15,9 +15,7 @@
         TRAP #15
         RTS
         
-   FINPRG:
-        MOVE #9,D0
-        TRAP #15 
+   
         
    AFFCHAINE:
         MOVE.B (A0),D1
@@ -46,6 +44,7 @@
         MOVE #22,D0
         TRAP #15
         RTS
+
 
 
 
