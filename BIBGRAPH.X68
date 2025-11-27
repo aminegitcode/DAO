@@ -79,10 +79,14 @@
         MOVE #92,D0
         TRAP #15
         RTS
+        
+        
+ 
 
 
-
-
+    FINPRG:
+        MOVE #9,D0
+        TRAP #15 
 
 
 
