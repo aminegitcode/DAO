@@ -1,6 +1,6 @@
 00000000 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 27/11/2025 09:43:55
+Created On: 27/11/2025 10:08:38
 
 00000000                             1  *-----------------------------------------------------------
 00000000                             2  * Title      : affichage
@@ -12,37 +12,37 @@ Created On: 27/11/2025 09:43:55
 00000000                             8  
 00000000                             9   ; definir la couleur du fond
 00000000  223C 00FFFFFF             10      MOVE.L #$00FFFFFF,D1
-00000006  4EB9 00000154             11      JSR SET_FILL_COLOR
+00000006  4EB9 0000016A             11      JSR SET_FILL_COLOR
 0000000C                            12  
 0000000C                            13      ; initialiser le fond  (dessiner un rectangle qui prend la taille de tout l'ecran)
 0000000C  323C 0000                 14      MOVE.W #0,D1      ; point de depart (x)
 00000010  343C 0000                 15      MOVE.W #0,D2      ; point de depart (y)
 00000014  363C 027F                 16      MOVE.W #639,D3    ; point final (largeur x) 
 00000018  383C 01DF                 17      MOVE.W #479,D4    ; point final (hauteur y)
-0000001C  4EB9 00000184             18      JSR DRAW_FILL_RECT        
+0000001C  4EB9 0000019A             18      JSR DRAW_FILL_RECT        
 00000022                            19      
 00000022                            20      
 00000022                            21      ; definir la couleur du fond de la barre d'outils
 00000022  223C 00C0C0C0             22      MOVE.L #$00C0C0C0,D1 
-00000028  4EB9 00000154             23      JSR SET_FILL_COLOR 
+00000028  4EB9 0000016A             23      JSR SET_FILL_COLOR 
 0000002E                            24  
 0000002E                            25      ; initialiser le fond de la barre d'outils
 0000002E  323C 0000                 26      MOVE.W #0,D1      ;X1 
-00000032  343C 001E                 27      MOVE.W #30,D2       ; Y1
+00000032  343C 0014                 27      MOVE.W #20,D2       ; Y1
 00000036  363C 027F                 28      MOVE.W #639,D3     ;X2
 0000003A  383C 004B                 29      MOVE.W #75,D4      ;Y2
-0000003E  4EB9 00000184             30      JSR DRAW_FILL_RECT         
+0000003E  4EB9 0000019A             30      JSR DRAW_FILL_RECT         
 00000044                            31  
 00000044                            32  
 00000044                            33  
 00000044                            34      ; definir la couleur gris clair pour remplir le fond des boutons
 00000044  223C 00DCDCDC             35      MOVE.L #$DCDCDC,D1
-0000004A  4EB9 00000154             36      JSR SET_FILL_COLOR
+0000004A  4EB9 0000016A             36      JSR SET_FILL_COLOR
 00000050                            37  
 00000050                            38      
 00000050                            39      ; definir la couleur du contour du bouton
 00000050  7200                      40      MOVE.L #$00000000,D1
-00000052  4EB9 0000014C             41      JSR SET_PEN_COLOR
+00000052  4EB9 00000162             41      JSR SET_PEN_COLOR
 00000058                            42      
 00000058                            43      ; dessiner le contour des boutons er remplir le fond
 00000058                            44  
@@ -51,8 +51,8 @@ Created On: 27/11/2025 09:43:55
 0000005C  343C 0023                 47      MOVE.W #35,D2      ; Y1
 00000060  363C 0028                 48      MOVE.W #40,D3     ; X2
 00000064  383C 0046                 49      MOVE.W #70,D4     ; Y2
-00000068  4EB9 0000019C             50      JSR DRAW_RECT
-0000006E  4EB9 00000184             51      JSR DRAW_FILL_RECT         
+00000068  4EB9 000001B2             50      JSR DRAW_RECT
+0000006E  4EB9 0000019A             51      JSR DRAW_FILL_RECT         
 00000074                            52      
 00000074                            53      
 00000074                            54      ; gomme
@@ -60,8 +60,8 @@ Created On: 27/11/2025 09:43:55
 00000078  343C 0023                 56      MOVE.W #35,D2      ; Y1
 0000007C  363C 0050                 57      MOVE.W #80,D3     ; X2
 00000080  383C 0046                 58      MOVE.W #70,D4     ; Y2
-00000084  4EB9 0000019C             59      JSR DRAW_RECT
-0000008A  4EB9 00000184             60      JSR DRAW_FILL_RECT     
+00000084  4EB9 000001B2             59      JSR DRAW_RECT
+0000008A  4EB9 0000019A             60      JSR DRAW_FILL_RECT     
 00000090                            61   
 00000090                            62   
 00000090                            63      ; cercle
@@ -69,221 +69,228 @@ Created On: 27/11/2025 09:43:55
 00000094  343C 0023                 65      MOVE.W #35,D2      ; Y1
 00000098  363C 0078                 66      MOVE.W #120,D3     ; X2
 0000009C  383C 0046                 67      MOVE.W #70,D4     ; Y2
-000000A0  4EB9 0000019C             68      JSR DRAW_RECT
-000000A6  4EB9 00000184             69      JSR DRAW_FILL_RECT   
+000000A0  4EB9 000001B2             68      JSR DRAW_RECT
+000000A6  4EB9 0000019A             69      JSR DRAW_FILL_RECT   
 000000AC                            70  
 000000AC                            71  
 000000AC                            72     
 000000AC                            73  
 000000AC                            74      ; palettes de couleurs
-000000AC  323C 007D                 75      MOVE.W #125,D1     ; X1
-000000B0  343C 0023                 76      MOVE.W #35,D2      ; Y1
-000000B4  363C 00C8                 77      MOVE.W #200,D3     ; X2
+000000AC  323C 007D                 75      MOVE.W #125,D1     
+000000B0  343C 0023                 76      MOVE.W #35,D2      
+000000B4  363C 00C8                 77      MOVE.W #200,D3     
 000000B8  383C 0046                 78      MOVE.W #70,D4 
-000000BC  4EB9 0000019C             79      JSR DRAW_RECT
-000000C2  4EB9 00000184             80      JSR DRAW_FILL_RECT   
+000000BC  4EB9 000001B2             79      JSR DRAW_RECT
+000000C2  4EB9 0000019A             80      JSR DRAW_FILL_RECT   
 000000C8                            81  
 000000C8                            82      
 000000C8                            83      ; couleur noir
 000000C8  7200                      84      MOVE.L #$00000,D1
-000000CA  4EB9 00000154             85      JSR SET_FILL_COLOR
-000000D0  323C 0080                 86      MOVE.W #128,D1     ; X1
-000000D4  343C 0026                 87      MOVE.W #38,D2      ; Y1
-000000D8  363C 008C                 88      MOVE.W #140,D3     ; X2
-000000DC  383C 0032                 89      MOVE.W #50,D4       ; Y2
-000000E0  4EB9 00000184             90      JSR DRAW_FILL_RECT 
+000000CA  4EB9 0000016A             85      JSR SET_FILL_COLOR
+000000D0  323C 0080                 86      MOVE.W #128,D1     
+000000D4  343C 0026                 87      MOVE.W #38,D2      
+000000D8  363C 008C                 88      MOVE.W #140,D3     
+000000DC  383C 0032                 89      MOVE.W #50,D4       
+000000E0  4EB9 0000019A             90      JSR DRAW_FILL_RECT 
 000000E6                            91      
 000000E6                            92      
 000000E6                            93      ; couleur rouge
 000000E6  223C 000000FF             94      MOVE.L #$0000FF,D1
-000000EC  4EB9 00000154             95      JSR SET_FILL_COLOR
-000000F2  323C 008F                 96      MOVE.W #143,D1     ; X1
-000000F6  343C 0026                 97      MOVE.W #38,D2      ; Y1
-000000FA  363C 009B                 98      MOVE.W #155,D3     ; X2
-000000FE  383C 0032                 99      MOVE.W #50,D4       ; Y2
-00000102  4EB9 00000184            100      JSR DRAW_FILL_RECT 
+000000EC  4EB9 0000016A             95      JSR SET_FILL_COLOR
+000000F2  323C 008F                 96      MOVE.W #143,D1     
+000000F6  343C 0026                 97      MOVE.W #38,D2      
+000000FA  363C 009B                 98      MOVE.W #155,D3     
+000000FE  383C 0032                 99      MOVE.W #50,D4       
+00000102  4EB9 0000019A            100      JSR DRAW_FILL_RECT 
 00000108                           101      
 00000108                           102      ; couleur vert
 00000108  223C 0000FF00            103      MOVE.L #$00FF00,D1
-0000010E  4EB9 00000154            104      JSR SET_FILL_COLOR
-00000114  323C 009E                105      MOVE.W #158,D1     ; X1
-00000118  343C 0026                106      MOVE.W #38,D2      ; Y1
-0000011C  363C 00AA                107      MOVE.W #170,D3     ; X2
-00000120  383C 0032                108      MOVE.W #50,D4       ; Y2
-00000124  4EB9 00000184            109      JSR DRAW_FILL_RECT 
+0000010E  4EB9 0000016A            104      JSR SET_FILL_COLOR
+00000114  323C 009E                105      MOVE.W #158,D1     
+00000118  343C 0026                106      MOVE.W #38,D2      
+0000011C  363C 00AA                107      MOVE.W #170,D3     
+00000120  383C 0032                108      MOVE.W #50,D4       
+00000124  4EB9 0000019A            109      JSR DRAW_FILL_RECT 
 0000012A                           110    
 0000012A                           111   
 0000012A                           112      
-0000012A  207C 00000212            113      MOVE.L #CHAINE_OUTILS, A0
-00000130  2210                     114      MOVE.L (A0),D1
-00000132  4EB9 000001CA            115      JSR AFFCAR
+0000012A  7200                     113      MOVE.L #$00000000,D1
+0000012C  4EB9 00000162            114      JSR SET_PEN_COLOR
+00000132  4EB9 0000016A            115      JSR SET_FILL_COLOR
 00000138                           116      
-00000138  207C 00000219            117      MOVE.L #CHAINE_COULEURS_CRAYON, A0
-0000013E  2210                     118      MOVE.L (A0),D1
-00000140  4EB9 000001CA            119      JSR AFFCAR
-00000146                           120      
-00000146                           121      
-00000146                           122      
-00000146  4EF9 000001C4            123      JMP FINPRG
-0000014C                           124      INCLUDE 'BIBGRAPH.X68'
-0000014C                           125  
-0000014C                           126      SET_PEN_COLOR:
-0000014C  303C 0050                127          MOVE #80,D0
-00000150  4E4F                     128          TRAP #15
-00000152  4E75                     129          RTS
-00000154                           130          
-00000154                           131      SET_FILL_COLOR:
-00000154  303C 0051                132          MOVE #81,D0
-00000158  4E4F                     133          TRAP #15
-0000015A  4E75                     134          RTS
-0000015C                           135  
-0000015C                           136      DRAW_PIX:
-0000015C  303C 0052                137          MOVE #82,D0
-00000160  4E4F                     138          TRAP #15
-00000162  4E75                     139          RTS
-00000164                           140          
-00000164                           141      GET_PIX_COLOR:
-00000164  303C 0053                142          MOVE #83,D0
-00000168  4E4F                     143          TRAP #15
-0000016A  4E75                     144          RTS
-0000016C                           145          
-0000016C                           146      DRAW_LINE:
-0000016C  303C 0054                147          MOVE #84,D0
-00000170  4E4F                     148          TRAP #15
-00000172  4E75                     149          RTS
-00000174                           150          
-00000174                           151      DRAW_TO:
-00000174  303C 0055                152          MOVE #85,D0
-00000178  4E4F                     153          TRAP #15
-0000017A  4E75                     154          RTS
-0000017C                           155          
-0000017C                           156      MOVE_TO:
-0000017C  303C 0056                157          MOVE #86,D0
-00000180  4E4F                     158          TRAP #15
-00000182  4E75                     159          RTS
-00000184                           160          
-00000184                           161      DRAW_FILL_RECT:
-00000184  303C 0057                162          MOVE #87,D0
-00000188  4E4F                     163          TRAP #15
-0000018A  4E75                     164          RTS
-0000018C                           165          
-0000018C                           166      DRAW_FILL_ELIPSE:
-0000018C  303C 0058                167          MOVE #88,D0
-00000190  4E4F                     168          TRAP #15
-00000192  4E75                     169          RTS
-00000194                           170      
-00000194                           171      POT_DE_PEINTURE:
-00000194  303C 0059                172          MOVE #89,D0
-00000198  4E4F                     173          TRAP #15
-0000019A  4E75                     174          RTS
-0000019C                           175          
-0000019C                           176      DRAW_RECT:
-0000019C  303C 005A                177          MOVE #90,D0
-000001A0  4E4F                     178          TRAP #15
-000001A2  4E75                     179          RTS
-000001A4                           180          
-000001A4                           181      DRAW_ELLIPSE:
-000001A4  303C 005B                182          MOVE #91,D0
-000001A8  4E4F                     183          TRAP #15
-000001AA  4E75                     184          RTS
-000001AC                           185          
-000001AC                           186      WIDTH_PEN:
-000001AC  303C 005D                187          MOVE #93,D0
-000001B0  4E4F                     188          TRAP #15
-000001B2  4E75                     189          RTS
-000001B4                           190          
-000001B4                           191      SWAP_SCREEN:
-000001B4  303C 005E                192          MOVE #94,D0
-000001B8  4E4F                     193          TRAP #15
-000001BA  4E75                     194          RTS
-000001BC                           195          
-000001BC                           196      DRAW_MODE:
-000001BC  303C 005C                197          MOVE #92,D0
-000001C0  4E4F                     198          TRAP #15
-000001C2  4E75                     199          RTS
-000001C4                           200          
-000001C4                           201          
-000001C4                           202   
-000001C4                           203  
-000001C4                           204  
-000001C4                           205      FINPRG:
-000001C4  303C 0009                206          MOVE #9,D0
-000001C8  4E4F                     207          TRAP #15 
-000001CA                           208  
-000001CA                           209  
-000001CA                           210  
-000001CA                           211  
-000001CA                           212  
-000001CA                           213  
-000001CA                           214  
-000001CA                           215  
-000001CA                           216  
-000001CA                           217  
-000001CA                           218  -------------------- end include --------------------
-000001CA                           219      INCLUDE 'BIBLIO.X68'
-000001CA                           220     AFFCAR:
-000001CA  303C 0006                221          MOVE #6,D0
-000001CE  4E4F                     222          TRAP #15
-000001D0  4E75                     223          RTS
-000001D2                           224     
-000001D2                           225     
-000001D2                           226     SAISCAR:
-000001D2  303C 0005                227          MOVE #5,D0
-000001D6  4E4F                     228          TRAP #15
-000001D8  4E75                     229          RTS
-000001DA                           230          
-000001DA                           231     
-000001DA                           232          
-000001DA                           233     AFFCHAINE:
-000001DA  1210                     234          MOVE.B (A0),D1
-000001DC  4EB8 01CA                235          JSR AFFCAR
-000001E0  5288                     236          ADD.L #1,A0
-000001E2  B23C 0000                237          CMP.B #0,D1
-000001E6  66F2                     238          BNE AFFCHAINE 
-000001E8  4E75                     239          RTS
-000001EA                           240          
-000001EA                           241     SAISCHAINE:
-000001EA  4EB8 01D2                242           JSR SAISCAR 
-000001EE  B23C 000D                243           CMP.B #13,D1
-000001F2  6700 0008                244           BEQ FIN1
-000001F6  1081                     245           MOVE.B D1,(A0)
-000001F8  5288                     246           ADD.L #1,A0
-000001FA  60EE                     247           BRA SAISCHAINE
-000001FC                           248      FIN1:
-000001FC  10BC 0000                249           MOVE.B #0,(A0)
-00000200  4E75                     250           RTS
-00000202                           251      
-00000202                           252      POS_CURS:
-00000202  303C 000B                253          MOVE #11,D0
-00000206  4E4F                     254          TRAP #15
-00000208  4E75                     255          RTS
-0000020A                           256      GET_AFFCAR:
-0000020A  303C 0016                257          MOVE #22,D0
-0000020E  4E4F                     258          TRAP #15
-00000210  4E75                     259          RTS
-00000212                           260  
-00000212                           261  
-00000212                           262  
-00000212                           263  
-00000212                           264  -------------------- end include --------------------
-00000212                           265      
-00000212                           266      
-00000212                           267  
-00000212                           268      
-00000212= 4F 75 74 69 6C 73 00     269  CHAINE_OUTILS: DC.B 'Outils',0
-00000219= 43 6F 75 65 6C 75 ...    270  CHAINE_COULEURS_CRAYON: DC.B 'Couelur crayon',0
+00000138  207C 00000228            117      MOVE.L #CHAINE_OUTILS, A0
+0000013E  4EB9 000001F0            118      JSR AFFCHAINE
+00000144                           119      
+00000144  207C 0000023E            120      MOVE.L #CHAINE_VIDE, A0
+0000014A  4EB9 000001F0            121      JSR AFFCHAINE
+00000150                           122      
+00000150  207C 0000022F            123      MOVE.L #CHAINE_COULEURS_CRAYON, A0
+00000156  4EB9 000001F0            124      JSR AFFCHAINE
+0000015C                           125      
+0000015C                           126      
+0000015C                           127      
+0000015C                           128      
+0000015C  4EF9 000001DA            129      JMP FINPRG
+00000162                           130      INCLUDE 'BIBGRAPH.X68'
+00000162                           131  
+00000162                           132      SET_PEN_COLOR:
+00000162  303C 0050                133          MOVE #80,D0
+00000166  4E4F                     134          TRAP #15
+00000168  4E75                     135          RTS
+0000016A                           136          
+0000016A                           137      SET_FILL_COLOR:
+0000016A  303C 0051                138          MOVE #81,D0
+0000016E  4E4F                     139          TRAP #15
+00000170  4E75                     140          RTS
+00000172                           141  
+00000172                           142      DRAW_PIX:
+00000172  303C 0052                143          MOVE #82,D0
+00000176  4E4F                     144          TRAP #15
+00000178  4E75                     145          RTS
+0000017A                           146          
+0000017A                           147      GET_PIX_COLOR:
+0000017A  303C 0053                148          MOVE #83,D0
+0000017E  4E4F                     149          TRAP #15
+00000180  4E75                     150          RTS
+00000182                           151          
+00000182                           152      DRAW_LINE:
+00000182  303C 0054                153          MOVE #84,D0
+00000186  4E4F                     154          TRAP #15
+00000188  4E75                     155          RTS
+0000018A                           156          
+0000018A                           157      DRAW_TO:
+0000018A  303C 0055                158          MOVE #85,D0
+0000018E  4E4F                     159          TRAP #15
+00000190  4E75                     160          RTS
+00000192                           161          
+00000192                           162      MOVE_TO:
+00000192  303C 0056                163          MOVE #86,D0
+00000196  4E4F                     164          TRAP #15
+00000198  4E75                     165          RTS
+0000019A                           166          
+0000019A                           167      DRAW_FILL_RECT:
+0000019A  303C 0057                168          MOVE #87,D0
+0000019E  4E4F                     169          TRAP #15
+000001A0  4E75                     170          RTS
+000001A2                           171          
+000001A2                           172      DRAW_FILL_ELIPSE:
+000001A2  303C 0058                173          MOVE #88,D0
+000001A6  4E4F                     174          TRAP #15
+000001A8  4E75                     175          RTS
+000001AA                           176      
+000001AA                           177      POT_DE_PEINTURE:
+000001AA  303C 0059                178          MOVE #89,D0
+000001AE  4E4F                     179          TRAP #15
+000001B0  4E75                     180          RTS
+000001B2                           181          
+000001B2                           182      DRAW_RECT:
+000001B2  303C 005A                183          MOVE #90,D0
+000001B6  4E4F                     184          TRAP #15
+000001B8  4E75                     185          RTS
+000001BA                           186          
+000001BA                           187      DRAW_ELLIPSE:
+000001BA  303C 005B                188          MOVE #91,D0
+000001BE  4E4F                     189          TRAP #15
+000001C0  4E75                     190          RTS
+000001C2                           191          
+000001C2                           192      WIDTH_PEN:
+000001C2  303C 005D                193          MOVE #93,D0
+000001C6  4E4F                     194          TRAP #15
+000001C8  4E75                     195          RTS
+000001CA                           196          
+000001CA                           197      SWAP_SCREEN:
+000001CA  303C 005E                198          MOVE #94,D0
+000001CE  4E4F                     199          TRAP #15
+000001D0  4E75                     200          RTS
+000001D2                           201          
+000001D2                           202      DRAW_MODE:
+000001D2  303C 005C                203          MOVE #92,D0
+000001D6  4E4F                     204          TRAP #15
+000001D8  4E75                     205          RTS
+000001DA                           206          
+000001DA                           207          
+000001DA                           208   
+000001DA                           209  
+000001DA                           210  
+000001DA                           211      FINPRG:
+000001DA  303C 0009                212          MOVE #9,D0
+000001DE  4E4F                     213          TRAP #15 
+000001E0                           214  
+000001E0                           215  
+000001E0                           216  
+000001E0                           217  
+000001E0                           218  
+000001E0                           219  
+000001E0                           220  
+000001E0                           221  
+000001E0                           222  
+000001E0                           223  
+000001E0                           224  -------------------- end include --------------------
+000001E0                           225      INCLUDE 'BIBLIO.X68'
+000001E0                           226     AFFCAR:
+000001E0  303C 0006                227          MOVE #6,D0
+000001E4  4E4F                     228          TRAP #15
+000001E6  4E75                     229          RTS
+000001E8                           230     
+000001E8                           231     
+000001E8                           232     SAISCAR:
+000001E8  303C 0005                233          MOVE #5,D0
+000001EC  4E4F                     234          TRAP #15
+000001EE  4E75                     235          RTS
+000001F0                           236          
+000001F0                           237     
+000001F0                           238          
+000001F0                           239     AFFCHAINE:
+000001F0  1210                     240          MOVE.B (A0),D1
+000001F2  4EB8 01E0                241          JSR AFFCAR
+000001F6  5288                     242          ADD.L #1,A0
+000001F8  B23C 0000                243          CMP.B #0,D1
+000001FC  66F2                     244          BNE AFFCHAINE 
+000001FE  4E75                     245          RTS
+00000200                           246          
+00000200                           247     SAISCHAINE:
+00000200  4EB8 01E8                248           JSR SAISCAR 
+00000204  B23C 000D                249           CMP.B #13,D1
+00000208  6700 0008                250           BEQ FIN1
+0000020C  1081                     251           MOVE.B D1,(A0)
+0000020E  5288                     252           ADD.L #1,A0
+00000210  60EE                     253           BRA SAISCHAINE
+00000212                           254      FIN1:
+00000212  10BC 0000                255           MOVE.B #0,(A0)
+00000216  4E75                     256           RTS
+00000218                           257      
+00000218                           258      POS_CURS:
+00000218  303C 000B                259          MOVE #11,D0
+0000021C  4E4F                     260          TRAP #15
+0000021E  4E75                     261          RTS
+00000220                           262      GET_AFFCAR:
+00000220  303C 0016                263          MOVE #22,D0
+00000224  4E4F                     264          TRAP #15
+00000226  4E75                     265          RTS
+00000228                           266  
+00000228                           267  
+00000228                           268  
+00000228                           269  
+00000228                           270  -------------------- end include --------------------
 00000228                           271      
 00000228                           272      
-00000228                           273      
+00000228                           273  
 00000228                           274      
-00000228                           275      
-00000228                           276      
-00000228                           277      
-00000228                           278   
-00000228                           279  
-00000228                           280  
-00000228                           281  
-Line 282 WARNING: END directive missing, starting address not set
+00000228= 4F 75 74 69 6C 73 00     275  CHAINE_OUTILS: DC.B 'Outils',0
+0000022F= 43 6F 75 65 6C 75 ...    276  CHAINE_COULEURS_CRAYON: DC.B 'Couelur crayon',0
+0000023E= 20 20 20 20 20 20 ...    277  CHAINE_VIDE: DC.B '            ',0
+0000024B                           278      
+0000024B                           279      
+0000024B                           280      
+0000024B                           281      
+0000024B                           282      
+0000024B                           283      
+0000024B                           284      
+0000024B                           285   
+0000024B                           286  
+0000024B                           287  
+0000024B                           288  
+Line 289 WARNING: END directive missing, starting address not set
 
 No errors detected
 1 warning generated
@@ -292,29 +299,30 @@ No errors detected
 SYMBOL TABLE INFORMATION
 Symbol-name         Value
 -------------------------
-AFFCAR              1CA
-AFFCHAINE           1DA
+AFFCAR              1E0
+AFFCHAINE           1F0
 AFFICHAGE           0
-CHAINE_COULEURS_CRAYON  219
-CHAINE_OUTILS       212
-DRAW_ELLIPSE        1A4
-DRAW_FILL_ELIPSE    18C
-DRAW_FILL_RECT      184
-DRAW_LINE           16C
-DRAW_MODE           1BC
-DRAW_PIX            15C
-DRAW_RECT           19C
-DRAW_TO             174
-FIN1                1FC
-FINPRG              1C4
-GET_AFFCAR          20A
-GET_PIX_COLOR       164
-MOVE_TO             17C
-POS_CURS            202
-POT_DE_PEINTURE     194
-SAISCAR             1D2
-SAISCHAINE          1EA
-SET_FILL_COLOR      154
-SET_PEN_COLOR       14C
-SWAP_SCREEN         1B4
-WIDTH_PEN           1AC
+CHAINE_COULEURS_CRAYON  22F
+CHAINE_OUTILS       228
+CHAINE_VIDE         23E
+DRAW_ELLIPSE        1BA
+DRAW_FILL_ELIPSE    1A2
+DRAW_FILL_RECT      19A
+DRAW_LINE           182
+DRAW_MODE           1D2
+DRAW_PIX            172
+DRAW_RECT           1B2
+DRAW_TO             18A
+FIN1                212
+FINPRG              1DA
+GET_AFFCAR          220
+GET_PIX_COLOR       17A
+MOVE_TO             192
+POS_CURS            218
+POT_DE_PEINTURE     1AA
+SAISCAR             1E8
+SAISCHAINE          200
+SET_FILL_COLOR      16A
+SET_PEN_COLOR       162
+SWAP_SCREEN         1CA
+WIDTH_PEN           1C2
