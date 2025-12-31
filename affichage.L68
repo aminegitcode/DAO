@@ -1,328 +1,395 @@
 00000000 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 27/11/2025 10:19:59
+Created On: 31/12/2025 01:35:50
 
 00000000                             1  *-----------------------------------------------------------
 00000000                             2  * Title      : affichage
 00000000                             3  * Written by :
 00000000                             4  * Date       :
-00000000                             5  * Description: initialiser et dessiner l'interface 
+00000000                             5  * Description: initialiser et dessiner l'interface
 00000000                             6  *-----------------------------------------------------------
 00000000                             7  affichage:   
 00000000                             8  
-00000000                             9   ; definir la couleur du fond
+00000000                             9  ; definir la couleur du fond
 00000000  223C 00FFFFFF             10      MOVE.L #$00FFFFFF,D1
-00000006  4EB9 0000016A             11      JSR SET_FILL_COLOR
-0000000C                            12  
-0000000C                            13      ; initialiser le fond  (dessiner un rectangle qui prend la taille de tout l'ecran)
-0000000C  323C 0000                 14      MOVE.W #0,D1      ; point de depart (x)
-00000010  343C 0000                 15      MOVE.W #0,D2      ; point de depart (y)
-00000014  363C 027F                 16      MOVE.W #639,D3    ; point final (largeur x) 
-00000018  383C 01DF                 17      MOVE.W #479,D4    ; point final (hauteur y)
-0000001C  4EB9 0000019A             18      JSR DRAW_FILL_RECT        
-00000022                            19      
-00000022                            20      
-00000022                            21      ; definir la couleur du fond de la barre d'outils
-00000022  223C 00C0C0C0             22      MOVE.L #$00C0C0C0,D1 
-00000028  4EB9 0000016A             23      JSR SET_FILL_COLOR 
-0000002E                            24  
-0000002E                            25      ; initialiser le fond de la barre d'outils
-0000002E  323C 0000                 26      MOVE.W #0,D1      ;X1 
-00000032  343C 0014                 27      MOVE.W #20,D2       ; Y1
-00000036  363C 027F                 28      MOVE.W #639,D3     ;X2
-0000003A  383C 004B                 29      MOVE.W #75,D4      ;Y2
-0000003E  4EB9 0000019A             30      JSR DRAW_FILL_RECT         
-00000044                            31  
-00000044                            32  
-00000044                            33  
-00000044                            34      ; definir la couleur gris clair pour remplir le fond des boutons
-00000044  223C 00DCDCDC             35      MOVE.L #$DCDCDC,D1
-0000004A  4EB9 0000016A             36      JSR SET_FILL_COLOR
-00000050                            37  
-00000050                            38      
-00000050                            39      ; definir la couleur du contour du bouton
-00000050  7200                      40      MOVE.L #$00000000,D1
-00000052  4EB9 00000162             41      JSR SET_PEN_COLOR
-00000058                            42      
-00000058                            43      ; dessiner le contour des boutons er remplir le fond
-00000058                            44  
-00000058                            45      ;; crayon  
-00000058  323C 0005                 46      MOVE.W #5,D1     ; X1
-0000005C  343C 0023                 47      MOVE.W #35,D2      ; Y1
-00000060  363C 0028                 48      MOVE.W #40,D3     ; X2
-00000064  383C 0046                 49      MOVE.W #70,D4     ; Y2
-00000068  4EB9 000001B2             50      JSR DRAW_RECT
-0000006E  4EB9 0000019A             51      JSR DRAW_FILL_RECT         
-00000074                            52      
-00000074                            53      
-00000074                            54      ; gomme
-00000074  323C 002D                 55      MOVE.W #45,D1     ; X1
-00000078  343C 0023                 56      MOVE.W #35,D2      ; Y1
-0000007C  363C 0050                 57      MOVE.W #80,D3     ; X2
-00000080  383C 0046                 58      MOVE.W #70,D4     ; Y2
-00000084  4EB9 000001B2             59      JSR DRAW_RECT
-0000008A  4EB9 0000019A             60      JSR DRAW_FILL_RECT     
-00000090                            61   
-00000090                            62   
-00000090                            63      ; cercle
-00000090  323C 0055                 64      MOVE.W #85,D1     ; X1
-00000094  343C 0023                 65      MOVE.W #35,D2      ; Y1
-00000098  363C 0078                 66      MOVE.W #120,D3     ; X2
-0000009C  383C 0046                 67      MOVE.W #70,D4     ; Y2
-000000A0  4EB9 000001B2             68      JSR DRAW_RECT
-000000A6  4EB9 0000019A             69      JSR DRAW_FILL_RECT   
-000000AC                            70  
-000000AC                            71  
-000000AC                            72     
-000000AC                            73  
-000000AC                            74      ; palettes de couleurs
-000000AC  323C 007D                 75      MOVE.W #125,D1     
-000000B0  343C 0023                 76      MOVE.W #35,D2      
-000000B4  363C 00C8                 77      MOVE.W #200,D3     
-000000B8  383C 0046                 78      MOVE.W #70,D4 
-000000BC  4EB9 000001B2             79      JSR DRAW_RECT
-000000C2  4EB9 0000019A             80      JSR DRAW_FILL_RECT   
-000000C8                            81  
-000000C8                            82      
-000000C8                            83      ; couleur noir
-000000C8  7200                      84      MOVE.L #$00000,D1
-000000CA  4EB9 0000016A             85      JSR SET_FILL_COLOR
-000000D0  323C 0080                 86      MOVE.W #128,D1     
-000000D4  343C 0026                 87      MOVE.W #38,D2      
-000000D8  363C 008C                 88      MOVE.W #140,D3     
-000000DC  383C 0032                 89      MOVE.W #50,D4       
-000000E0  4EB9 0000019A             90      JSR DRAW_FILL_RECT 
-000000E6                            91      
-000000E6                            92      
-000000E6                            93      ; couleur rouge
-000000E6  223C 000000FF             94      MOVE.L #$0000FF,D1
-000000EC  4EB9 0000016A             95      JSR SET_FILL_COLOR
-000000F2  323C 008F                 96      MOVE.W #143,D1     
-000000F6  343C 0026                 97      MOVE.W #38,D2      
-000000FA  363C 009B                 98      MOVE.W #155,D3     
-000000FE  383C 0032                 99      MOVE.W #50,D4       
-00000102  4EB9 0000019A            100      JSR DRAW_FILL_RECT 
-00000108                           101      
-00000108                           102      ; couleur vert
-00000108  223C 0000FF00            103      MOVE.L #$00FF00,D1
-0000010E  4EB9 0000016A            104      JSR SET_FILL_COLOR
-00000114  323C 009E                105      MOVE.W #158,D1     
-00000118  343C 0026                106      MOVE.W #38,D2      
-0000011C  363C 00AA                107      MOVE.W #170,D3     
-00000120  383C 0032                108      MOVE.W #50,D4       
-00000124  4EB9 0000019A            109      JSR DRAW_FILL_RECT 
-0000012A                           110    
-0000012A                           111   
-0000012A                           112      
-0000012A  7200                     113      MOVE.L #$00000000,D1
-0000012C  4EB9 00000162            114      JSR SET_PEN_COLOR
-00000132  4EB9 0000016A            115      JSR SET_FILL_COLOR
-00000138                           116      
-00000138  207C 00000228            117      MOVE.L #CHAINE_OUTILS, A0
-0000013E  4EB9 000001F0            118      JSR AFFCHAINE
-00000144                           119      
-00000144  207C 0000023E            120      MOVE.L #CHAINE_VIDE, A0
-0000014A  4EB9 000001F0            121      JSR AFFCHAINE
-00000150                           122      
-00000150  207C 0000022F            123      MOVE.L #CHAINE_COULEURS_CRAYON, A0
-00000156  4EB9 000001F0            124      JSR AFFCHAINE
-0000015C                           125      
-0000015C                           126      
-0000015C                           127      
-0000015C                           128      
-0000015C  4EF9 000001DA            129      JMP FINPRG
-00000162                           130      INCLUDE 'BIBGRAPH.X68'
-00000162                           131  
-00000162                           132      SET_PEN_COLOR:
-00000162  303C 0050                133          MOVE #80,D0
-00000166  4E4F                     134          TRAP #15
-00000168  4E75                     135          RTS
-0000016A                           136          
-0000016A                           137      SET_FILL_COLOR:
-0000016A  303C 0051                138          MOVE #81,D0
-0000016E  4E4F                     139          TRAP #15
-00000170  4E75                     140          RTS
-00000172                           141  
-00000172                           142      DRAW_PIX:
-00000172  303C 0052                143          MOVE #82,D0
-00000176  4E4F                     144          TRAP #15
-00000178  4E75                     145          RTS
-0000017A                           146          
-0000017A                           147      GET_PIX_COLOR:
-0000017A  303C 0053                148          MOVE #83,D0
-0000017E  4E4F                     149          TRAP #15
-00000180  4E75                     150          RTS
-00000182                           151          
-00000182                           152      DRAW_LINE:
-00000182  303C 0054                153          MOVE #84,D0
-00000186  4E4F                     154          TRAP #15
-00000188  4E75                     155          RTS
-0000018A                           156          
-0000018A                           157      DRAW_TO:
-0000018A  303C 0055                158          MOVE #85,D0
-0000018E  4E4F                     159          TRAP #15
-00000190  4E75                     160          RTS
-00000192                           161          
-00000192                           162      MOVE_TO:
-00000192  303C 0056                163          MOVE #86,D0
-00000196  4E4F                     164          TRAP #15
-00000198  4E75                     165          RTS
-0000019A                           166          
-0000019A                           167      DRAW_FILL_RECT:
-0000019A  303C 0057                168          MOVE #87,D0
-0000019E  4E4F                     169          TRAP #15
-000001A0  4E75                     170          RTS
-000001A2                           171          
-000001A2                           172      DRAW_FILL_ELIPSE:
-000001A2  303C 0058                173          MOVE #88,D0
-000001A6  4E4F                     174          TRAP #15
-000001A8  4E75                     175          RTS
-000001AA                           176      
-000001AA                           177      POT_DE_PEINTURE:
-000001AA  303C 0059                178          MOVE #89,D0
-000001AE  4E4F                     179          TRAP #15
-000001B0  4E75                     180          RTS
-000001B2                           181          
-000001B2                           182      DRAW_RECT:
-000001B2  303C 005A                183          MOVE #90,D0
-000001B6  4E4F                     184          TRAP #15
-000001B8  4E75                     185          RTS
-000001BA                           186          
-000001BA                           187      DRAW_ELLIPSE:
-000001BA  303C 005B                188          MOVE #91,D0
-000001BE  4E4F                     189          TRAP #15
-000001C0  4E75                     190          RTS
-000001C2                           191          
-000001C2                           192      WIDTH_PEN:
-000001C2  303C 005D                193          MOVE #93,D0
-000001C6  4E4F                     194          TRAP #15
-000001C8  4E75                     195          RTS
-000001CA                           196          
-000001CA                           197      SWAP_SCREEN:
-000001CA  303C 005E                198          MOVE #94,D0
-000001CE  4E4F                     199          TRAP #15
-000001D0  4E75                     200          RTS
-000001D2                           201          
-000001D2                           202      DRAW_MODE:
-000001D2  303C 005C                203          MOVE #92,D0
-000001D6  4E4F                     204          TRAP #15
-000001D8  4E75                     205          RTS
-000001DA                           206          
-000001DA                           207          
-000001DA                           208   
-000001DA                           209  
-000001DA                           210  
-000001DA                           211      FINPRG:
-000001DA  303C 0009                212          MOVE #9,D0
-000001DE  4E4F                     213          TRAP #15 
-000001E0                           214  
-000001E0                           215  
-000001E0                           216  
-000001E0                           217  
-000001E0                           218  
-000001E0                           219  
-000001E0                           220  
-000001E0                           221  
-000001E0                           222  
-000001E0                           223  
-000001E0                           224  -------------------- end include --------------------
-000001E0                           225      INCLUDE 'BIBLIO.X68'
-000001E0                           226     AFFCAR:
-000001E0  303C 0006                227          MOVE #6,D0
-000001E4  4E4F                     228          TRAP #15
-000001E6  4E75                     229          RTS
-000001E8                           230     
-000001E8                           231     
-000001E8                           232     SAISCAR:
-000001E8  303C 0005                233          MOVE #5,D0
-000001EC  4E4F                     234          TRAP #15
-000001EE  4E75                     235          RTS
-000001F0                           236          
-000001F0                           237     
-000001F0                           238          
-000001F0                           239     AFFCHAINE:
-000001F0  1210                     240          MOVE.B (A0),D1
-000001F2  4EB8 01E0                241          JSR AFFCAR
-000001F6  5288                     242          ADD.L #1,A0
-000001F8  B23C 0000                243          CMP.B #0,D1
-000001FC  66F2                     244          BNE AFFCHAINE 
-000001FE  4E75                     245          RTS
-00000200                           246          
-00000200                           247     SAISCHAINE:
-00000200  4EB8 01E8                248           JSR SAISCAR 
-00000204  B23C 000D                249           CMP.B #13,D1
-00000208  6700 0008                250           BEQ FIN1
-0000020C  1081                     251           MOVE.B D1,(A0)
-0000020E  5288                     252           ADD.L #1,A0
-00000210  60EE                     253           BRA SAISCHAINE
-00000212                           254      FIN1:
-00000212  10BC 0000                255           MOVE.B #0,(A0)
-00000216  4E75                     256           RTS
-00000218                           257      
-00000218                           258      POS_CURS:
-00000218  303C 000B                259          MOVE #11,D0
-0000021C  4E4F                     260          TRAP #15
-0000021E  4E75                     261          RTS
-00000220                           262      GET_AFFCAR:
-00000220  303C 0016                263          MOVE #22,D0
-00000224  4E4F                     264          TRAP #15
-00000226  4E75                     265          RTS
-00000228                           266  
-00000228                           267  
-00000228                           268  
-00000228                           269  
-00000228                           270  -------------------- end include --------------------
-00000228                           271      
-00000228                           272      
-00000228                           273  
-00000228                           274      
-00000228= 4F 75 74 69 6C 73 00     275  CHAINE_OUTILS: DC.B 'Outils',0
-0000022F= 43 6F 75 65 6C 75 ...    276  CHAINE_COULEURS_CRAYON: DC.B 'Couelur crayon',0
-0000023E= 20 20 20 20 20 20 ...    277  CHAINE_VIDE: DC.B '            ',0
-0000024B                           278      
-0000024B                           279      
-0000024B                           280      
-0000024B                           281      
-0000024B                           282      
-0000024B                           283      
-0000024B                           284      
-0000024B                           285   
-0000024B                           286  
-0000024B                           287  
-0000024B                           288  
-Line 289 WARNING: END directive missing, starting address not set
+Line 11 ERROR: Undefined symbol
+00000006  4EB9 004DBD16             11      JSR SET_FILL_COLOR
+Line 12 ERROR: Undefined symbol
+0000000C  4EB9 004DBD16             12      JSR SET_PEN_COLOR
+00000012                            13  
+00000012                            14  ; initialiser le fond (dessiner un rectangle qui prend la taille de tout l'ecran)
+00000012  323C 0000                 15      MOVE.W #0,D1
+00000016  343C 0000                 16      MOVE.W #0,D2
+0000001A  363C 027F                 17      MOVE.W #639,D3
+0000001E  383C 01DF                 18      MOVE.W #479,D4
+Line 19 ERROR: Undefined symbol
+00000022  4EB9 004DBD16             19      JSR DRAW_FILL_RECT
+00000028                            20  
+00000028                            21  ; definir la couleur du fond de la barre d'outils
+00000028  223C 00C0C0C0             22      MOVE.L #$00C0C0C0,D1
+Line 23 ERROR: Undefined symbol
+0000002E  4EB9 004DBD16             23      JSR SET_FILL_COLOR
+00000034                            24  
+00000034                            25  ; initialiser le fond de la barre d'outils
+00000034  223C 00C0C0C0             26      MOVE.L #$00C0C0C0,D1
+Line 27 ERROR: Undefined symbol
+0000003A  4EB9 004DBD16             27      JSR SET_FILL_COLOR
+00000040  323C 0000                 28      MOVE.W #0,D1        ; X début
+00000044  343C 0000                 29      MOVE.W #0,D2        ; Y début collé en haut
+00000048  363C 027F                 30      MOVE.W #639,D3      ; X fin
+0000004C  383C 002D                 31      MOVE.W #45,D4       ; hauteur de la navbar
+Line 32 ERROR: Undefined symbol
+00000050  4EB9 004DBD16             32      JSR DRAW_FILL_RECT
+00000056                            33  
+00000056                            34  
+00000056                            35  
+00000056                            36  ; definir la couleur gris clair pour remplir le fond des boutons
+00000056  223C 00DCDCDC             37      MOVE.L #$DCDCDC,D1
+Line 38 ERROR: Undefined symbol
+0000005C  4EB9 004DBD16             38      JSR SET_FILL_COLOR
+00000062  7200                      39      MOVE.L #$00000000,D1
+Line 40 ERROR: Undefined symbol
+00000064  4EB9 004DBD16             40      JSR SET_PEN_COLOR
+0000006A                            41  
+0000006A                            42  ; definir la couleur du contour du bouton
+0000006A  223C F00AD025             43      MOVE.L #$F00AD025,D1
+Line 44 ERROR: Undefined symbol
+00000070  4EB9 004DBD16             44      JSR SET_PEN_COLOR
+00000076                            45  
+00000076                            46  ; dessiner le contour des boutons er remplir le fond
+00000076                            47  
+00000076                            48  ; crayon
+00000076  323C 0005                 49      MOVE.W #5,D1
+0000007A  343C 0005                 50      MOVE.W #5,D2       
+0000007E  363C 004B                 51      MOVE.W #75,D3
+00000082  383C 0028                 52      MOVE.W #40,D4      
+Line 53 ERROR: Undefined symbol
+00000086  4EB9 004DBD16             53      JSR DRAW_FILL_RECT
+Line 54 ERROR: Undefined symbol
+0000008C  4EB9 004DBD16             54      JSR DRAW_RECT
+00000092                            55      
+00000092  323C 0201                 56      MOVE.W #$0201,D1 ; definir la position du curseur pour le boutton
+Line 57 ERROR: Undefined symbol
+00000096  4EB9 004DBD16             57      JSR POS_CURS
+0000009C                            58      
+0000009C  207C 0000042F             59      MOVE.L #TXT_CRAYON,A0
+Line 60 ERROR: Undefined symbol
+000000A2  4EB9 004DBD16             60      JSR AFFCHAINE
+000000A8                            61  
+000000A8                            62  
+000000A8                            63  ; gomme
+000000A8  323C 00A3                 64      MOVE.W #163,D1
+000000AC  343C 0005                 65      MOVE.W #5,D2
+000000B0  363C 00E6                 66      MOVE.W #230,D3
+000000B4  383C 0028                 67      MOVE.W #40,D4
+Line 68 ERROR: Undefined symbol
+000000B8  4EB9 004DBD16             68      JSR DRAW_FILL_RECT
+Line 69 ERROR: Undefined symbol
+000000BE  4EB9 004DBD16             69      JSR DRAW_RECT
+000000C4                            70      
+000000C4  323C 1601                 71      MOVE.W #$1601,D1 ; definir la position du curseur pour le boutton
+Line 72 ERROR: Undefined symbol
+000000C8  4EB9 004DBD16             72      JSR POS_CURS
+000000CE                            73      
+000000CE  207C 00000436             74      MOVE.L #TXT_GOMME,A0
+Line 75 ERROR: Undefined symbol
+000000D4  4EB9 004DBD16             75      JSR AFFCHAINE
+000000DA                            76      
+000000DA                            77  ; remplissage
+000000DA  323C 00EB                 78      MOVE.W #235,D1
+000000DE  343C 0005                 79      MOVE.W #5,D2
+000000E2  363C 014F                 80      MOVE.W #335,D3
+000000E6  383C 0028                 81      MOVE.W #40,D4
+Line 82 ERROR: Undefined symbol
+000000EA  4EB9 004DBD16             82      JSR DRAW_FILL_RECT
+Line 83 ERROR: Undefined symbol
+000000F0  4EB9 004DBD16             83      JSR DRAW_RECT
+000000F6                            84      
+000000F6  323C 1E01                 85      MOVE.W #$1E01,D1 ; definir la position du curseur pour le boutton
+Line 86 ERROR: Undefined symbol
+000000FA  4EB9 004DBD16             86      JSR POS_CURS
+00000100                            87      
+00000100  207C 0000043C             88      MOVE.L #TXT_REMPLISSAGE,A0
+Line 89 ERROR: Undefined symbol
+00000106  4EB9 004DBD16             89      JSR AFFCHAINE
+0000010C                            90  
+0000010C                            91  ; FORMES
+0000010C  323C 0154                 92      MOVE.W #340,D1
+00000110  343C 0005                 93      MOVE.W #5,D2
+00000114  363C 01B8                 94      MOVE.W #440,D3
+00000118  383C 0028                 95      MOVE.W #40,D4
+Line 96 ERROR: Undefined symbol
+0000011C  4EB9 004DBD16             96      JSR DRAW_FILL_RECT
+Line 97 ERROR: Undefined symbol
+00000122  4EB9 004DBD16             97      JSR DRAW_RECT
+00000128                            98      
+00000128  323C 2D01                 99      MOVE.W #$2D01,D1 ; definir la position du curseur pour le boutton
+Line 100 ERROR: Undefined symbol
+0000012C  4EB9 004DBD16            100      JSR POS_CURS
+00000132                           101      
+00000132                           102      
+00000132  223C 00C0C0C0            103      MOVE.L #$00C0C0C0,D1
+Line 104 ERROR: Undefined symbol
+00000138  4EB9 004DBD16            104      JSR SET_FILL_COLOR
+0000013E                           105      
+0000013E                           106      ;dessiner la forme du cercle
+0000013E  323C 0156                107      MOVE.W #342,D1
+00000142  343C 000D                108      MOVE.W #13,D2
+00000146  363C 016A                109      MOVE.W #362,D3
+0000014A  383C 0021                110      MOVE.W #33,D4
+Line 111 ERROR: Undefined symbol
+0000014E  4EB9 004DBD16            111      JSR DRAW_ELLIPSE
+00000154                           112      
+00000154                           113      ; dessiner le rectangle
+00000154  323C 016F                114      MOVE.W #367,D1
+00000158  343C 000D                115      MOVE.W #13,D2
+0000015C  363C 0183                116      MOVE.W #387,D3
+00000160  383C 0021                117      MOVE.W #33,D4
+Line 118 ERROR: Undefined symbol
+00000164  4EB9 004DBD16            118       JSR DRAW_RECT
+0000016A                           119      
+0000016A                           120  
+0000016A  223C 00C0C0C0            121      MOVE.L #$00C0C0C0,D1
+Line 122 ERROR: Undefined symbol
+00000170  4EB9 004DBD16            122      JSR SET_FILL_COLOR
+00000176  323C 0188                123      MOVE.W #392,D1        
+0000017A  343C 000D                124      MOVE.W #13,D2        
+0000017E  363C 019C                125      MOVE.W #412,D3      
+00000182  383C 0021                126      MOVE.W #33,D4       
+Line 127 ERROR: Undefined symbol
+00000186  4EB9 004DBD16            127      JSR DRAW_FILL_RECT
+0000018C                           128      
+0000018C  323C 01A1                129      MOVE.W #417,D1        
+00000190  343C 000D                130      MOVE.W #13,D2        
+00000194  363C 01B5                131      MOVE.W #437,D3      
+00000198  383C 0021                132      MOVE.W #33,D4       
+Line 133 ERROR: Undefined symbol
+0000019C  4EB9 004DBD16            133      JSR DRAW_FILL_ELIPSE
+000001A2                           134      
+000001A2                           135      
+000001A2                           136      
+000001A2  223C 00DCDCDC            137      MOVE.L #$DCDCDC,D1 ; redefinir la couleur du fond des bouttons 
+Line 138 ERROR: Undefined symbol
+000001A8  4EB9 004DBD16            138      JSR SET_FILL_COLOR 
+000001AE                           139  ; ENREGISTRER
+000001AE  323C 01BD                140      MOVE.W #445,D1
+000001B2  343C 0005                141      MOVE.W #5,D2
+000001B6  363C 022B                142      MOVE.W #555,D3
+000001BA  383C 0028                143      MOVE.W #40,D4
+Line 144 ERROR: Undefined symbol
+000001BE  4EB9 004DBD16            144      JSR DRAW_FILL_RECT
+Line 145 ERROR: Undefined symbol
+000001C4  4EB9 004DBD16            145      JSR DRAW_RECT
+000001CA                           146      
+000001CA  323C 3901                147      MOVE.W #$3901,D1 ; definir la position du curseur pour le boutton
+Line 148 ERROR: Undefined symbol
+000001CE  4EB9 004DBD16            148      JSR POS_CURS
+000001D4                           149      
+000001D4  207C 0000044F            150      MOVE.L #TXT_ENREGISTER,A0
+Line 151 ERROR: Undefined symbol
+000001DA  4EB9 004DBD16            151      JSR AFFCHAINE
+000001E0                           152  
+000001E0                           153  ; NOUVEAU
+000001E0  323C 0230                154      MOVE.W #560,D1
+000001E4  343C 0005                155      MOVE.W #5,D2
+000001E8  363C 027A                156      MOVE.W #634,D3
+000001EC  383C 0028                157      MOVE.W #40,D4
+Line 158 ERROR: Undefined symbol
+000001F0  4EB9 004DBD16            158      JSR DRAW_FILL_RECT
+Line 159 ERROR: Undefined symbol
+000001F6  4EB9 004DBD16            159      JSR DRAW_RECT
+000001FC                           160      
+000001FC  323C 4701                161      MOVE.W #$4701,D1 ; definir la position du curseur pour le boutton
+Line 162 ERROR: Undefined symbol
+00000200  4EB9 004DBD16            162      JSR POS_CURS
+00000206  207C 0000045B            163      MOVE.L #TXT_NOUVEAUU,A0
+Line 164 ERROR: Undefined symbol
+0000020C  4EB9 004DBD16            164      JSR AFFCHAINE
+00000212                           165  
+00000212                           166  
+00000212                           167  
+00000212                           168  
+00000212                           169  ; ---------------Couleur boutons---------------
+00000212                           170  
+00000212  223C 00DCDCDC            171      MOVE.L #$00DCDCDC,D1
+Line 172 ERROR: Undefined symbol
+00000218  4EB9 004DBD16            172      JSR SET_FILL_COLOR
+0000021E                           173  
+0000021E                           174  ; palette de couleurs fond
+0000021E  323C 004F                175      MOVE.W #79,D1
+00000222  343C 0005                176      MOVE.W #5,D2
+00000226  363C 009F                177      MOVE.W #159,D3
+0000022A  383C 0028                178      MOVE.W #40,D4
+Line 179 ERROR: Undefined symbol
+0000022E  4EB9 004DBD16            179      JSR DRAW_RECT
+Line 180 ERROR: Undefined symbol
+00000234  4EB9 004DBD16            180      JSR DRAW_FILL_RECT
+0000023A                           181  
+0000023A                           182  ; couleur noir
+0000023A  7200                     183      MOVE.L #$00000000,D1
+Line 184 ERROR: Undefined symbol
+0000023C  4EB9 004DBD16            184      JSR SET_FILL_COLOR
+00000242  323C 0053                185      MOVE.W #83,D1
+00000246  343C 0009                186      MOVE.W #9,D2
+0000024A  363C 005F                187      MOVE.W #95,D3
+0000024E  383C 0015                188      MOVE.W #21,D4
+Line 189 ERROR: Undefined symbol
+00000252  4EB9 004DBD16            189      JSR DRAW_FILL_RECT
+00000258                           190  
+00000258                           191  ; couleur rouge
+00000258  223C 000000FF            192      MOVE.L #$000000FF,D1
+Line 193 ERROR: Undefined symbol
+0000025E  4EB9 004DBD16            193      JSR SET_FILL_COLOR
+00000264  323C 0062                194      MOVE.W #98,D1
+00000268  343C 0009                195      MOVE.W #9,D2
+0000026C  363C 006E                196      MOVE.W #110,D3
+00000270  383C 0015                197      MOVE.W #21,D4
+Line 198 ERROR: Undefined symbol
+00000274  4EB9 004DBD16            198      JSR DRAW_FILL_RECT
+0000027A                           199  
+0000027A                           200  ; couleur vert
+0000027A  223C 0000FF00            201      MOVE.L #$0000FF00,D1
+Line 202 ERROR: Undefined symbol
+00000280  4EB9 004DBD16            202      JSR SET_FILL_COLOR
+00000286  323C 0071                203      MOVE.W #113,D1
+0000028A  343C 0009                204      MOVE.W #9,D2
+0000028E  363C 007D                205      MOVE.W #125,D3
+00000292  383C 0015                206      MOVE.W #21,D4
+Line 207 ERROR: Undefined symbol
+00000296  4EB9 004DBD16            207      JSR DRAW_FILL_RECT
+0000029C                           208  
+0000029C                           209  ; couleur jeune
+0000029C  223C 0000FFFF            210      MOVE.L #$0000FFFF,D1
+Line 211 ERROR: Undefined symbol
+000002A2  4EB9 004DBD16            211      JSR SET_FILL_COLOR
+000002A8  323C 0080                212      MOVE.W #128,D1
+000002AC  343C 0009                213      MOVE.W #9,D2
+000002B0  363C 008C                214      MOVE.W #140,D3
+000002B4  383C 0015                215      MOVE.W #21,D4
+Line 216 ERROR: Undefined symbol
+000002B8  4EB9 004DBD16            216      JSR DRAW_FILL_RECT
+000002BE                           217  
+000002BE                           218  ; couleur rose
+000002BE  223C 00FF8CFF            219      MOVE.L #$00FF8CFF,D1
+Line 220 ERROR: Undefined symbol
+000002C4  4EB9 004DBD16            220      JSR SET_FILL_COLOR
+000002CA  323C 008F                221      MOVE.W #143,D1
+000002CE  343C 0009                222      MOVE.W #9,D2
+000002D2  363C 009B                223      MOVE.W #155,D3
+000002D6  383C 0015                224      MOVE.W #21,D4
+Line 225 ERROR: Undefined symbol
+000002DA  4EB9 004DBD16            225      JSR DRAW_FILL_RECT
+000002E0                           226  
+000002E0                           227  ; couleur orange
+000002E0  223C 000088FF            228      MOVE.L #$000088FF,D1
+Line 229 ERROR: Undefined symbol
+000002E6  4EB9 004DBD16            229      JSR SET_FILL_COLOR
+000002EC  323C 008F                230      MOVE.W #143,D1
+000002F0  343C 0018                231      MOVE.W #24,D2
+000002F4  363C 009B                232      MOVE.W #155,D3
+000002F8  383C 0024                233      MOVE.W #36,D4
+Line 234 ERROR: Undefined symbol
+000002FC  4EB9 004DBD16            234      JSR DRAW_FILL_RECT
+00000302                           235  
+00000302                           236  ; couleur bleu
+00000302  223C 00FF0000            237      MOVE.L #$00FF0000,D1
+Line 238 ERROR: Undefined symbol
+00000308  4EB9 004DBD16            238      JSR SET_FILL_COLOR
+0000030E  323C 0080                239      MOVE.W #128,D1
+00000312  343C 0018                240      MOVE.W #24,D2
+00000316  363C 008C                241      MOVE.W #140,D3
+0000031A  383C 0024                242      MOVE.W #36,D4
+Line 243 ERROR: Undefined symbol
+0000031E  4EB9 004DBD16            243      JSR DRAW_FILL_RECT
+00000324                           244  
+00000324                           245  ; couleur violet
+00000324  223C 00800080            246      MOVE.L #$00800080,D1
+Line 247 ERROR: Undefined symbol
+0000032A  4EB9 004DBD16            247      JSR SET_FILL_COLOR
+00000330  323C 0053                248      MOVE.W #83,D1
+00000334  343C 0018                249      MOVE.W #24,D2
+00000338  363C 005F                250      MOVE.W #95,D3
+0000033C  383C 0024                251      MOVE.W #36,D4
+Line 252 ERROR: Undefined symbol
+00000340  4EB9 004DBD16            252      JSR DRAW_FILL_RECT
+00000346                           253  
+00000346                           254  ; couleur bleu nuit
+00000346  223C 008B4513            255      MOVE.L #$008B4513,D1
+Line 256 ERROR: Undefined symbol
+0000034C  4EB9 004DBD16            256      JSR SET_FILL_COLOR
+00000352  323C 0062                257      MOVE.W #98,D1
+00000356  343C 0018                258      MOVE.W #24,D2
+0000035A  363C 006E                259      MOVE.W #110,D3
+0000035E  383C 0024                260      MOVE.W #36,D4
+Line 261 ERROR: Undefined symbol
+00000362  4EB9 004DBD16            261      JSR DRAW_FILL_RECT
+00000368                           262  
+00000368                           263  ; couleur marron
+00000368  223C 00191970            264      MOVE.L #$00191970,D1
+Line 265 ERROR: Undefined symbol
+0000036E  4EB9 004DBD16            265      JSR SET_FILL_COLOR
+00000374  323C 0071                266      MOVE.W #113,D1
+00000378  343C 0018                267      MOVE.W #24,D2
+0000037C  363C 027B                268      MOVE.W #635,D3
+00000380  383C 0024                269      MOVE.W #36,D4
+Line 270 ERROR: Undefined symbol
+00000384  4EB9 004DBD16            270      JSR DRAW_FILL_RECT
+0000038A                           271  
+0000038A                           272  ; couleur du texte
+0000038A  223C 00C0C0C0            273      MOVE.L #$00C0C0C0,D1
+Line 274 ERROR: Undefined symbol
+00000390  4EB9 004DBD16            274      JSR SET_PEN_COLOR
+Line 275 ERROR: Undefined symbol
+00000396  4EB9 004DBD16            275      JSR SET_FILL_COLOR
+0000039C                           276          
+0000039C                           277  ; position du texte
+0000039C  323C 021E                278      MOVE.W #$021E,D1
+Line 279 ERROR: Undefined symbol
+000003A0  4EB9 004DBD16            279      JSR POS_CURS
+000003A6                           280  
+000003A6                           281  ; texte à afficher
+000003A6  207C 000003B4            282      MOVE.L #TEXT,A0
+Line 283 ERROR: Undefined symbol
+000003AC  4EB9 004DBD16            283      JSR AFFCHAINE
+000003B2                           284  
+000003B2                           285  
+000003B2  4E75                     286      RTS    
+000003B4= 20 20 4F 75 74 69 ...    287  TEXT: DC.B '  Outil:           Taille:              Couleur:',13,10,0
+000003E7                           288  
+000003E7= 20 20 20 43 6C 69 ...    289  TEXT_AIDE: DC.B '   Cliquez pour dessiner | [+] Agrandir | [-] Reduire | [GOMME] Effacer',0
+0000042F                           290  
+0000042F= 43 52 41 59 4F 4E 00     291  TXT_CRAYON: DC.B 'CRAYON',0
+00000436                           292  
+00000436= 47 4F 4D 4D 45 00        293  TXT_GOMME: DC.B 'GOMME',0
+0000043C                           294  
+0000043C= 52 45 4D 50 4C 49 ...    295  TXT_REMPLISSAGE: DC.B 'REMPLISSAGE',0
+00000448                           296  
+00000448= 46 4F 52 4D 45 53 00     297  TXT_FORMES: DC.B 'FORMES',0
+0000044F                           298  
+0000044F= 45 4E 52 45 47 49 ...    299  TXT_ENREGISTER: DC.B 'ENREGISTRER',0
+0000045B                           300  
+0000045B= 4E 4F 55 56 45 41 ...    301  TXT_NOUVEAUU: DC.B 'NOUVEAU',0
+00000463                           302  
+00000463                           303  
+00000463                           304      
+00000463                           305  
+00000463                           306  
+00000463                           307  
+Line 308 WARNING: END directive missing, starting address not set
 
-No errors detected
+66 errors detected
 1 warning generated
 
 
 SYMBOL TABLE INFORMATION
 Symbol-name         Value
 -------------------------
-AFFCAR              1E0
-AFFCHAINE           1F0
 AFFICHAGE           0
-CHAINE_COULEURS_CRAYON  22F
-CHAINE_OUTILS       228
-CHAINE_VIDE         23E
-DRAW_ELLIPSE        1BA
-DRAW_FILL_ELIPSE    1A2
-DRAW_FILL_RECT      19A
-DRAW_LINE           182
-DRAW_MODE           1D2
-DRAW_PIX            172
-DRAW_RECT           1B2
-DRAW_TO             18A
-FIN1                212
-FINPRG              1DA
-GET_AFFCAR          220
-GET_PIX_COLOR       17A
-MOVE_TO             192
-POS_CURS            218
-POT_DE_PEINTURE     1AA
-SAISCAR             1E8
-SAISCHAINE          200
-SET_FILL_COLOR      16A
-SET_PEN_COLOR       162
-SWAP_SCREEN         1CA
-WIDTH_PEN           1C2
+TEXT                3B4
+TEXT_AIDE           3E7
+TXT_CRAYON          42F
+TXT_ENREGISTER      44F
+TXT_FORMES          448
+TXT_GOMME           436
+TXT_NOUVEAUU        45B
+TXT_REMPLISSAGE     43C

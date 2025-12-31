@@ -1,0 +1,178 @@
+00000000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 31/12/2025 03:42:20
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      :
+00000000                             3  * Written by :
+00000000                             4  * Date       :
+00000000                             5  * Description:
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  
+00000000                             9  BOUCLE_DESSIN:
+00000000                            10  
+00000000                            11  DESSIN_BOUCLE:
+00000000                            12  
+00000000                            13      ; afficher la couleur actuel
+00000000  223C 00000116             14      MOVE.L #COULEUR_ACTUEL,D1
+Line 15 ERROR: Undefined symbol
+00000006  4EB9 004DBD16             15      JSR SET_FILL_COLOR
+0000000C  323C 012C                 16      MOVE.W #300,D1
+00000010  343C 01B8                 17      MOVE.W #440,D2
+00000014  363C 0136                 18      MOVE.W #310,D3
+00000018  383C 01C2                 19      MOVE.W #450,D4
+Line 20 ERROR: Undefined symbol
+0000001C  4EB9 004DBD16             20      JSR DRAW_FILL_RECT
+00000022                            21  
+00000022                            22       ; afficher l'outil actuel
+00000022  323C 0B1E                 23      MOVE.W #$0B1E,D1
+Line 24 ERROR: Undefined symbol
+00000026  4EB9 004DBD16             24      JSR POS_CURS
+0000002C                            25  
+0000002C  1A39 00000114             26      MOVE.B OUTIL_ACTUEL,D5
+00000032  BA3C 0000                 27      CMP.B #0,D5
+00000036  6700 001E                 28      BEQ afficher_crayon
+0000003A  BA3C 0001                 29      CMP.B #1,D5
+0000003E  6700 0026                 30      BEQ afficher_gomme
+00000042  BA3C 0002                 31      CMP.B #2,D5
+00000046  6700 002E                 32      BEQ afficher_forme
+0000004A  BA3C 0003                 33      CMP.B #3,D5
+0000004E  6700 0036                 34      BEQ afficher_remplissage
+00000052  6000 003E                 35      BRA SUITE_OUTIL
+00000056                            36  
+00000056                            37  afficher_crayon:
+00000056  207C 0000011A             38      MOVE.L #CRAYON1,A0
+Line 39 ERROR: Undefined symbol
+0000005C  4EB9 004DBD16             39      JSR AFFCHAINE
+00000062  6000 002E                 40      BRA SUITE_OUTIL
+00000066                            41  
+00000066                            42  afficher_gomme:
+00000066  207C 00000121             43      MOVE.L #GOMME1,A0
+Line 44 ERROR: Undefined symbol
+0000006C  4EB9 004DBD16             44      JSR AFFCHAINE
+00000072  6000 001E                 45      BRA SUITE_OUTIL
+00000076                            46  
+00000076                            47  afficher_forme:
+00000076  207C 00000127             48      MOVE.L #FORME,A0
+Line 49 ERROR: Undefined symbol
+0000007C  4EB9 004DBD16             49      JSR AFFCHAINE
+00000082  6000 000E                 50      BRA SUITE_OUTIL
+00000086                            51  
+00000086                            52  afficher_remplissage:
+00000086  207C 0000012E             53      MOVE.L #REMPLISSAGE,A0
+Line 54 ERROR: Undefined symbol
+0000008C  4EB9 004DBD16             54      JSR AFFCHAINE
+00000092                            55  
+00000092                            56  SUITE_OUTIL:
+00000092                            57  
+00000092                            58  
+00000092                            59  
+00000092                            60  suite:   
+00000092                            61      ; lire souris
+00000092  7200                      62      MOVE.L #0,D1
+Line 63 ERROR: Undefined symbol
+00000094  4EB9 004DBD16             63      JSR GET_MOUSE 
+0000009A                            64  
+0000009A                            65      ; vérifier clic gauche
+0000009A  1800                      66      MOVE.B D0,D4
+0000009C  0204 0001                 67      ANDI.B #1,D4
+000000A0  6700 FF5E                 68      BEQ DESSIN_BOUCLE         
+000000A4                            69  
+000000A4                            70      ; récuperer X,Y
+000000A4                            71      
+000000A4  2401                      72      MOVE.L D1,D2          ; copier D1 dans D2
+000000A6  3602                      73      MOVE.W D2,D3          ;  recuperer X et le stcoker dans D3
+000000A8  7E10                      74      MOVE.L #16,D7   ; mettre 16 dans D7
+000000AA  EEAA                      75      LSR.L D7,D2    ; décaler D2 de 16 bits à droite
+000000AC                            76  
+000000AC  C4BC 0000FFFF             77      AND.L #$FFFF,D2       ; appliquer un masquage pour D2
+000000B2  3402                      78      MOVE.W D2,D2 
+000000B4                            79  
+000000B4                            80      ; vérifier zone de dessin
+000000B4  B47C 002D                 81      CMP.W #45,D2            ; Y min
+000000B8  6D00 0056                 82      BLT CHOISIR_OUTIL
+000000BC  B47C 01C2                 83      CMP.W #450,D2            ; Y max
+000000C0  6E00 FF3E                 84      BGT DESSIN_BOUCLE
+000000C4                            85  
+000000C4                            86      ; choisir outil
+000000C4  1A39 00000114             87      MOVE.B OUTIL_ACTUEL,D5
+000000CA  BA3C 0000                 88      CMP.B #0,D5
+000000CE  6700 000E                 89      BEQ CRAYON
+000000D2  BA3C 0001                 90      CMP.B #1,D5
+000000D6  6700 001E                 91      BEQ GOMME
+000000DA                            92  
+000000DA  6000 FF24                 93      BRA DESSIN_BOUCLE
+000000DE                            94  
+000000DE                            95  ;-------------------------------
+000000DE                            96  CRAYON:
+000000DE  2239 00000116             97      MOVE.L COULEUR_ACTUEL,D1
+Line 98 ERROR: Undefined symbol
+000000E4  4EB9 004DBD16             98      JSR SET_PEN_COLOR
+000000EA                            99  
+000000EA  3203                     100      MOVE.W D3,D1    ; X
+000000EC                           101   
+Line 102 ERROR: Undefined symbol
+000000EC  4EB9 004DBD16            102      JSR DRAW_PIX
+000000F2                           103  
+000000F2  6000 FF0C                104      BRA DESSIN_BOUCLE
+000000F6                           105  
+000000F6                           106  ;-------------------------------
+000000F6                           107  GOMME:
+000000F6  223C 00FFFFFF            108      MOVE.L #$00FFFFFF,D1
+Line 109 ERROR: Undefined symbol
+000000FC  4EB9 004DBD16            109      JSR SET_PEN_COLOR
+00000102                           110  
+00000102  3202                     111      MOVE.W D2,D1    ; X
+00000104  3403                     112      MOVE.W D3,D2    ; Y
+Line 113 ERROR: Undefined symbol
+00000106  4EB9 004DBD16            113      JSR DRAW_PIX
+0000010C                           114  
+0000010C  6000 FEF2                115      BRA DESSIN_BOUCLE
+00000110                           116  
+00000110                           117  
+00000110                           118  
+00000110                           119  
+00000110                           120  CHOISIR_OUTIL:
+00000110                           121  
+00000110  6000 FEEE                122      BRA DESSIN_BOUCLE
+00000114                           123      
+00000114                           124      
+00000114                           125      
+00000114                           126      
+00000114                           127      
+00000114                           128      
+00000114                           129      
+00000114= 00                       130  OUTIL_ACTUEL:   DC.B 0           ; 0=crayon, 1=gomme, 2=formes, 3=remplissage
+00000116= F00AD025                 131  COULEUR_ACTUEL: DC.L $F00AD025
+0000011A                           132  
+0000011A= 43 52 41 59 4F 4E 00     133  CRAYON1:        DC.B 'CRAYON',0
+00000121= 47 4F 4D 4D 45 00        134  GOMME1:         DC.B 'GOMME',0
+00000127= 46 4F 52 4D 45 53 00     135  FORME:        DC.B 'FORMES',0
+0000012E= 52 45 4D 50 4C 49 ...    136  REMPLISSAGE:   DC.B 'REMPLISSAGE',0
+Line 137 WARNING: END directive missing, starting address not set
+
+12 errors detected
+1 warning generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+AFFICHER_CRAYON     56
+AFFICHER_FORME      76
+AFFICHER_GOMME      66
+AFFICHER_REMPLISSAGE  86
+BOUCLE_DESSIN       0
+CHOISIR_OUTIL       110
+COULEUR_ACTUEL      116
+CRAYON              DE
+CRAYON1             11A
+DESSIN_BOUCLE       0
+FORME               127
+GOMME               F6
+GOMME1              121
+OUTIL_ACTUEL        114
+REMPLISSAGE         12E
+SUITE               92
+SUITE_OUTIL         92

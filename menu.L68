@@ -1,0 +1,145 @@
+00000000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 30/12/2025 22:25:42
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : menu
+00000000                             3  * Written by :
+00000000                             4  * Date       :
+00000000                             5  * Description: Page d'accueil interactive
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  menu_interactif:
+00000000  4EB9 0000003E              9      JSR dessiner_menu
+00000006                            10  
+00000006                            11  MENU_LOOP:
+00000006  7200                      12      MOVEQ #0,D1
+Line 13 ERROR: Undefined symbol
+00000008  4EB9 004DBD16             13      JSR GET_MOUSE          ; récupérer info souris
+0000000E                            14  
+0000000E                            15      ; clic gauche ?
+0000000E  0800 0000                 16      BTST #0,D0
+00000012  67F2                      17      BEQ MENU_LOOP          ; pas de clic ? continuer
+00000014                            18  
+00000014                            19      ; récupérer X,Y
+00000014  2401                      20      MOVE.L D1,D2
+00000016  3602                      21      MOVE.W D2,D3           ; Y
+00000018  4842                      22      SWAP D2
+0000001A  3402                      23      MOVE.W D2,D2           ; X
+0000001C                            24  
+0000001C                            25      ; bouton NOUVEAU
+0000001C  B47C 00BE                 26      CMP.W #190,D2
+00000020  6DE4                      27      BLT MENU_LOOP
+00000022  B47C 012C                 28      CMP.W #300,D2
+00000026  6EDE                      29      BGT MENU_LOOP
+00000028                            30  
+00000028  B67C 000A                 31      CMP.W #10,D3
+0000002C  6DD8                      32      BLT MENU_LOOP
+0000002E  B67C 00C8                 33      CMP.W #200,D3
+00000032  6ED2                      34      BGT MENU_LOOP
+00000034                            35  
+00000034                            36      ; clic sur NOUVEAU ? lancer interface DAO
+Line 37 ERROR: Undefined symbol
+00000034  4EB9 004DBD16             37      JSR affichage
+0000003A  60CA                      38      BRA MENU_LOOP          ; revenir au menu si nécessaire
+0000003C                            39  
+0000003C  4E75                      40      RTS
+0000003E                            41  
+0000003E                            42  dessiner_menu:
+0000003E                            43      ; Fond blanc
+0000003E  223C 00FFFFFF             44      MOVE.L #$00FFFFFF,D1
+Line 45 ERROR: Undefined symbol
+00000044  4EB9 004DBD16             45      JSR SET_FILL_COLOR
+0000004A  323C 0000                 46      MOVE.W #0,D1
+0000004E  343C 0000                 47      MOVE.W #0,D2
+00000052  363C 027F                 48      MOVE.W #639,D3
+00000056  383C 01DF                 49      MOVE.W #479,D4
+Line 50 ERROR: Undefined symbol
+0000005A  4EB9 004DBD16             50      JSR DRAW_FILL_RECT
+00000060                            51  
+00000060                            52      ; texte de bienvenue
+00000060  223C 00C0C0C0             53      MOVE.L #$00C0C0C0,D1
+Line 54 ERROR: Undefined symbol
+00000066  4EB9 004DBD16             54      JSR SET_FILL_COLOR
+0000006C  223C 00FF8CFF             55      MOVE.L #$00FF8CFF,D1
+Line 56 ERROR: Undefined symbol
+00000072  4EB9 004DBD16             56      JSR SET_PEN_COLOR
+00000078  323C 0000                 57      MOVE.W #0,D1
+0000007C  343C 0008                 58      MOVE.W #8,D2
+00000080  363C 027F                 59      MOVE.W #639,D3
+00000084  383C 0035                 60      MOVE.W #53,D4
+Line 61 ERROR: Undefined symbol
+00000088  4EB9 004DBD16             61      JSR DRAW_FILL_RECT
+Line 62 ERROR: Undefined symbol
+0000008E  4EB9 004DBD16             62      JSR DRAW_RECT
+00000094  323C 0801                 63      MOVE.W #$0801,D1
+Line 64 ERROR: Undefined symbol
+00000098  4EB9 004DBD16             64      JSR POS_CURS
+0000009E  207C 00000140             65      MOVE.L #TXT_BIENVENUE,A0
+Line 66 ERROR: Undefined symbol
+000000A4  4EB9 004DBD16             66      JSR AFFCHAINE
+000000AA                            67  
+000000AA                            68      ; Bouton NOUVEAU
+000000AA  223C 00C0C0C0             69      MOVE.L #$00C0C0C0,D1
+Line 70 ERROR: Undefined symbol
+000000B0  4EB9 004DBD16             70      JSR SET_FILL_COLOR
+000000B6  223C 00FF8CFF             71      MOVE.L #$00FF8CFF,D1
+Line 72 ERROR: Undefined symbol
+000000BC  4EB9 004DBD16             72      JSR SET_PEN_COLOR
+000000C2  323C 0082                 73      MOVE.W #130,D1
+000000C6  343C 0096                 74      MOVE.W #150,D2
+000000CA  363C 01FE                 75      MOVE.W #510,D3
+000000CE  383C 00E6                 76      MOVE.W #230,D4
+Line 77 ERROR: Undefined symbol
+000000D2  4EB9 004DBD16             77      JSR DRAW_FILL_REC
+Line 78 ERROR: Undefined symbol
+000000D8  4EB9 004DBD16             78      JSR DRAW_ELLIPSE
+000000DE  323C 200C                 79      MOVE.W #$200C,D1
+Line 80 ERROR: Undefined symbol
+000000E2  4EB9 004DBD16             80      JSR POS_CURS
+000000E8  207C 00000175             81      MOVE.L #TXT_NOUVEAU,A0
+Line 82 ERROR: Undefined symbol
+000000EE  4EB9 004DBD16             82      JSR AFFCHAINE
+000000F4                            83  
+000000F4                            84      ; Bouton OUVRIR
+000000F4  223C 00C0C0C0             85      MOVE.L #$00C0C0C0,D1
+Line 86 ERROR: Undefined symbol
+000000FA  4EB9 004DBD16             86      JSR SET_FILL_COLOR
+00000100  223C 00FF8CFF             87      MOVE.L #$00FF8CFF,D1
+Line 88 ERROR: Undefined symbol
+00000106  4EB9 004DBD16             88      JSR SET_PEN_COLOR
+0000010C  323C 00AA                 89      MOVE.W #170,D1
+00000110  343C 0104                 90      MOVE.W #260,D2
+00000114  363C 01D6                 91      MOVE.W #470,D3
+00000118  383C 0154                 92      MOVE.W #340,D4
+Line 93 ERROR: Undefined symbol
+0000011C  4EB9 004DBD16             93      JSR DRAW_FILL_REC
+Line 94 ERROR: Undefined symbol
+00000122  4EB9 004DBD16             94      JSR DRAW_ELLIPSE
+00000128  323C 2013                 95      MOVE.W #$2013,D1
+Line 96 ERROR: Undefined symbol
+0000012C  4EB9 004DBD16             96      JSR POS_CURS
+00000132  207C 00000184             97      MOVE.L #TXT_OUVRIR,A0
+Line 98 ERROR: Undefined symbol
+00000138  4EB9 004DBD16             98      JSR AFFCHAINE
+0000013E                            99  
+0000013E  4E75                     100      RTS
+00000140                           101  
+00000140= 20 20 20 20 20 20 ...    102  TXT_BIENVENUE: DC.B '        BIENVENUE DANS NOTRE LOGICIEL DE DESSIN     ',0
+00000175= 4E 4F 55 56 45 41 ...    103  TXT_NOUVEAU: DC.B 'NOUVEAU DESSIN',0
+00000184= 4F 55 56 52 49 52 ...    104  TXT_OUVRIR: DC.B 'OUVRIR UN FICHIER',0
+Line 105 WARNING: END directive missing, starting address not set
+
+22 errors detected
+1 warning generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+DESSINER_MENU       3E
+MENU_INTERACTIF     0
+MENU_LOOP           6
+TXT_BIENVENUE       140
+TXT_NOUVEAU         175
+TXT_OUVRIR          184
