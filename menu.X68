@@ -2,7 +2,7 @@
 * Title      : menu
 * Written by :
 * Date       :
-* Description: Page d'accueil interactive
+* Description: Page d'accueil 
 *-----------------------------------------------------------
 
 menu:
@@ -24,8 +24,8 @@ menu_boucle:
     MOVE.L #16,D7   ; mettre 16 dans D7
     LSR.L D7,D2    ; décaler D2 de 16 bits à droite
 
-    AND.L #$FFFF,D2       ; appliquer un masquage pour D2
-    MOVE.W D2,D2  
+  
+  
 
     ; bouton NOUVEAU
     CMP.W #150,D2
@@ -106,6 +106,8 @@ dessiner_menu:
 TXT_BIENVENUE: DC.B '        BIENVENUE DANS NOTRE LOGICIEL DE DESSIN     ',0
 TXT_NOUVEAU: DC.B 'NOUVEAU DESSIN',0
 TXT_OUVRIR: DC.B 'OUVRIR UN FICHIER',0
+
+
 
 
 *~Font name~Courier New~
