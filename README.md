@@ -1,8 +1,7 @@
 # DAO – Logiciel de dessin en assembleur 68000
 
-> **DAO** est un logiciel de dessin assisté par ordinateur développé en **assembleur Motorola 68000**, exécuté sur le simulateur **EASy68K**.
-> Il permet de dessiner à l’écran à l’aide de la souris via une interface graphique simple.
-
+> **DAO** estun logiciel de dessin assisté par ordinateur, développé en assembleur 68000 et exécuté sur le simulateur EASy68K, permettant de dessiner à l’écran à l’aide de la souris via une interface graphique simple.
+> 
 ## 🎯 Objectif
 
 Réaliser un logiciel de dessin bas niveau afin de mettre en pratique :
@@ -78,5 +77,10 @@ dao/
 * Modifier l’épaisseur du crayon
 * Sauvegarde / ouverture de dessins
 * Zoom ou grille
+
+
+## 🚀 Démo
+🔗 Découvrez TicTacToe et testez-le ici : https://tictactoehost.netlify.app/
+
 
 
