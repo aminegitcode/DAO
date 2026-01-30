@@ -24,7 +24,7 @@ Réaliser un logiciel de dessin bas niveau afin de mettre en pratique :
 
 ### Exemple de dessin
 
-![Exemple de dessin](images/dessin.png)
+![Exemple de dessin](images/exemple.png)
 
 ## 🧠 Fonctionnalités
 
